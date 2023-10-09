@@ -33,11 +33,17 @@ function App() {
     setInputValue(event.target.value);
   };
 
-  const handleAddElement = () => {
+  const addElement = () => {
     if (inputValue.trim() !== '') {
       setElements([...elements, inputValue]);
       setInputValue('');
     }
+  };
+
+  const deleteElement = (index) => {
+    const updatedElements = [...elements];
+    updatedElements.splice(index, 1);
+    setElements(updatedElements);
   };
 
   return (
@@ -47,6 +53,7 @@ function App() {
         {elements.map((element, index) => (
           <li key={index}>
             {element}
+            <button onClick={() => deleteElement(index)}>Delete</button>
           </li>
         ))}
       </ul>
@@ -57,7 +64,7 @@ function App() {
           value={inputValue}
           onChange={handleInputChange}
         />
-        <button onClick={handleAddElement}>Add</button>
+        <button onClick={addElement}>Add</button>
       </div>
     </div>
   );
