@@ -91,7 +91,9 @@ function App() {
         />
         <button onClick={addElement}>Add</button>
       </div>
-    </div>
+      <h6>Tasks Remaining: </h6>
+      <h6>{elements.filter((element) => !element.checked).length}</h6>    
+      </div>
   );
 }
 
