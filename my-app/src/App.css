@@ -5,6 +5,10 @@
   min-height: 100vh;
 }
 
+.App-header {
+  color: white;
+}
+
 .List {
   border: solid brown;
   color: white;
@@ -36,30 +40,12 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media screen and (max-width: 950px) {
+  .List {
+    border: solid brown;
+    color: white;
+    padding: 1%;
+    width: 90%;
+    margin: 0% auto;
   }
 }
