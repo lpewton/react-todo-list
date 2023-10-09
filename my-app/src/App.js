@@ -53,6 +53,9 @@ function App() {
         {elements.map((element, index) => (
           <li key={index}>
             {element}
+            <input
+          type="checkbox"
+        />
             <button onClick={() => deleteElement(index)}>Delete</button>
           </li>
         ))}
