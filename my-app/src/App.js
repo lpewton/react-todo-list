@@ -63,9 +63,10 @@ function App() {
     setElements(updatedElements);
   };
 
+  // Code
   return (
     <div className='App'>
-      <h1 className='App-header'>My Chores</h1>
+      <h1>My Chores</h1>
       <div>
         <ul className='List'>
           {elements.map((element, index) => (
@@ -91,8 +92,7 @@ function App() {
         />
         <button onClick={addElement}>Add</button>
       </div>
-      <h6>Tasks Remaining: </h6>
-      <h6>{elements.filter((element) => !element.checked).length}</h6>    
+      <h6>Tasks Remaining: {elements.filter((element) => !element.checked).length}</h6>
       </div>
   );
 }
