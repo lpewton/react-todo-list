@@ -4,25 +4,21 @@ import './App.css';
 function App() {
   const [inputValue, setInputValue] = useState('');
   const [elements, setElements] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
 
+  // Store the tasks in the browser 'localstorage'
   useEffect(() => {
-    // Retrieve the list of elements from localStorage when the component mounts
     try {
       const storedElements = JSON.parse(localStorage.getItem('elements'));
       if (storedElements && Array.isArray(storedElements)) {
         setElements(storedElements);
-        console.log('There are elements')
-        console.log(localStorage)
-      } else {
-        console.log('No valid data found in localStorage.');
       }
     } catch (error) {
       console.error('Error while parsing data from localStorage:', error);
     }
-  }, []); // The empty dependency array ensures this runs only once on component mount
+  }, []);
 
   useEffect(() => {
-    // Update localStorage whenever the 'elements' state changes
     try {
       localStorage.setItem('elements', JSON.stringify(elements));
     } catch (error) {
@@ -32,6 +28,24 @@ function App() {
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+  };
+
+  // Store the checkbox state in the browser 'localstorage'
+  useEffect(() => {
+    const storedValue = localStorage.getItem('checkboxState');
+    if (storedValue === 'true') {
+      setIsChecked(true);
+    } else if (storedValue === 'false') {
+      setIsChecked(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('checkboxState', isChecked.toString());
+  }, [isChecked]);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
   };
 
   const addElement = () => {
