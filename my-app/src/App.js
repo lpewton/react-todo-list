@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
@@ -47,25 +48,30 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>My Chores</h1>
-      <ul>
+    <div className='App'>
+      <h1 className='App-header'>My Chores</h1>
+      <div>
+      <ul className='List'>
         {elements.map((element, index) => (
-          <li key={index}>
+          <li key={index} className='ListItem'>
+            <div className='TaskName'>
             {element}
-            <input
+        </div>
+        <input
           type="checkbox"
         />
             <button onClick={() => deleteElement(index)}>Delete</button>
           </li>
         ))}
       </ul>
-      <div>
+      </div>
+      <div className='NewChore'>
         <input
           type="text"
-          placeholder="Enter text here"
+          placeholder="Enter new chore"
           value={inputValue}
           onChange={handleInputChange}
+          className='newChoreInput'
         />
         <button onClick={addElement}>Add</button>
       </div>

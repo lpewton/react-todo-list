@@ -1,5 +1,34 @@
 .App {
   text-align: center;
+  background-color: #282c34;
+  padding: 5%;
+  min-height: 100vh;
+}
+
+.List {
+  border: solid brown;
+  color: white;
+  padding: 1%;
+  width: 30%;
+  margin: 0% auto;
+}
+
+.ListItem {
+  display: flex;
+  margin: 3% 0%;
+  text-align: start;
+}
+
+.TaskName {
+  margin-right: auto;
+}
+
+.NewChore {
+  margin-top: 1%;
+}
+
+.newChoreInput {
+  margin-right: 1%;
 }
 
 .App-logo {
@@ -14,8 +43,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
