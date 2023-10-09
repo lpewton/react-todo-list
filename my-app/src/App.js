@@ -3,18 +3,26 @@ import './App.css';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
+  const [elements, setElements] = useState([]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+  };
+
+  const addElement = () => {
+    if (inputValue.trim() !== '') {
+      setElements([...elements, inputValue]);
+      setInputValue('');
+    }
   };
 
   return (
     <div>
       <h1>My Chores</h1>
       <ul>
-        <li>Do the laundry</li>
-        <li>Fetch tomatoes</li>
-        <li>Buy new sheets</li>
+        {elements.map((element, index) => (
+          <li key={index}>{element}</li>
+        ))}
       </ul>
       <div>
         <input
@@ -23,7 +31,7 @@ function App() {
           value={inputValue}
           onChange={handleInputChange}
         />
-        <button>Add Chore</button>
+        <button onClick={addElement}>Add Chore</button >
       </div>
     </div>
   );
