@@ -26,7 +26,7 @@ function App() {
     }
   }, [elements]);
 
-  const handleInputChange = (event) => {
+  const InputChange = (event) => {
     setInputValue(event.target.value);
   };
 
@@ -44,15 +44,17 @@ function App() {
     localStorage.setItem('checkboxState', isChecked.toString());
   }, [isChecked]);
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-
   const addElement = () => {
     if (inputValue.trim() !== '') {
-      setElements([...elements, inputValue]);
+      setElements([...elements, { task: inputValue, checked: false }]);
       setInputValue('');
     }
+  };
+
+  const CheckboxChange = (index) => {
+    const updatedElements = [...elements];
+    updatedElements[index].checked = !updatedElements[index].checked;
+    setElements(updatedElements);
   };
 
   const deleteElement = (index) => {
@@ -65,26 +67,26 @@ function App() {
     <div className='App'>
       <h1 className='App-header'>My Chores</h1>
       <div>
-      <ul className='List'>
-        {elements.map((element, index) => (
-          <li key={index} className='ListItem'>
-            <div className='TaskName'>
-            {element}
-        </div>
-        <input
-          type="checkbox"
-        />
-            <button onClick={() => deleteElement(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+        <ul className='List'>
+          {elements.map((element, index) => (
+            <li key={index} className='ListItem'>
+              <div className='TaskName'>{element.task}</div>
+              <input
+                type="checkbox"
+                checked={element.checked}
+                onChange={() => CheckboxChange(index)}
+              />
+              <button onClick={() => deleteElement(index)}>Delete</button>
+            </li>
+          ))}
+        </ul>
       </div>
       <div className='NewChore'>
         <input
           type="text"
           placeholder="Enter new chore"
           value={inputValue}
-          onChange={handleInputChange}
+          onChange={InputChange}
           className='newChoreInput'
         />
         <button onClick={addElement}>Add</button>
